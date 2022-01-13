@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "853659435485",
+    "project_id": "apprepaso-c63ee",
+    "storage_bucket": "apprepaso-c63ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853659435485:android:a607aae1b20151efd87634",
+        "android_client_info": {
+          "package_name": "com.kiskos.apprepaso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853659435485-8bjb4661580oej4qmo9r0fftvvblpnli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmky6XxtpYJtvBl9gi4dwBEuY4K22H7nM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853659435485-8bjb4661580oej4qmo9r0fftvvblpnli.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853659435485:android:6aba7f65a2d21e33d87634",
+        "android_client_info": {
+          "package_name": "com.kiskos.apprepaso2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853659435485-8bjb4661580oej4qmo9r0fftvvblpnli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmky6XxtpYJtvBl9gi4dwBEuY4K22H7nM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853659435485-8bjb4661580oej4qmo9r0fftvvblpnli.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
