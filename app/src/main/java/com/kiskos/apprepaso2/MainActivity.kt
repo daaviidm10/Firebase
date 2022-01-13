@@ -1,5 +1,6 @@
 package com.kiskos.apprepaso2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -89,6 +90,10 @@ class MainActivity : AppCompatActivity() {
                     updateUI(user)
                     Toast.makeText(baseContext, "Bien.",
                         Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MapsActivity::class.java).apply {
+                    }
+                    //Inicio el intent
+                    startActivity(intent)
                 } else {
                     // Si el inicio de sesión falla, muestre un mensaje al usuario.
                     Log.w("mal", "Acceso fallido", task.exception)
