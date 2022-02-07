@@ -10,10 +10,13 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -21,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         //Inicializar FireBase Auth
         auth = Firebase.auth
-        //Creo el boton para darse de alta
+        //Inicializo RealTime Base de datos
         val darseDeAlta: Button = findViewById(R.id.botonLoguearse)
         darseDeAlta.setOnClickListener{
             //Declaro la variable de usuario para recojer el texto
@@ -41,7 +44,6 @@ class MainActivity : AppCompatActivity() {
             //Llamo al metodo donde accedo a la cuenta y le paso de variables el correo y la contraseña
             accederCuenta(usuario.text.toString(),contraseña.text.toString())
         }
-
     }
     public override fun onStart() {
         super.onStart()

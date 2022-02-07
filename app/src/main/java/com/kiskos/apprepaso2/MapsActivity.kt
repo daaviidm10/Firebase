@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 
@@ -15,23 +16,54 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.kiskos.apprepaso2.databinding.ActivityMapsBinding
+import org.json.JSONObject
+import org.json.JSONTokener
+import org.w3c.dom.Text
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val PERMISO_LOCALIZACION: Int=3
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-
+    private lateinit var database: DatabaseReference //variable database que la inicializo mas tarde
+    private val TAG = "RealTime"
+    private var datos = arrayOf<Users>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        database = Firebase.database("https://apprepaso-c63ee-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        // Texto para mostrar
+        //val miTexto: TextView = findViewById(R.id.miTexto)
+        //ler los datos cuando cambien
+        val datoListener = object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val dato = snapshot.getValue()
+                Log.d(TAG,"cambio: "+ dato.toString())
+                //miTexto.text = dato.toString()
+                val jsonObject = JSONTokener(dato.toString()).nextValue() as JSONObject
+                Log.d(TAG,"JSON: "+ jsonObject.getString("AA01"))
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(TAG,"loadPost:onCancelled",error.toException())
+            }
+        }
+        database.child("/users").addValueEventListener(datoListener)
     }
 
     /**
@@ -108,4 +140,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             comprobarPermisos()
         }
     }
+    /**
+     * @param userId Nombre del usuario
+     * @param lt Latitud
+     * @param lg Longitud
+     */
+    fun writeNewData(userId:String,lt:Double,lg:Double){
+        Log.d(TAG,"Escribiendo Datos")
+        val user = Users(userId,lg,lt,userId)
+        database.child("users/AA03").setValue(user)
+
+    }
+
 }
