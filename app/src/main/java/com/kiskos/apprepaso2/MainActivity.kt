@@ -92,7 +92,27 @@ class MainActivity : AppCompatActivity() {
                     updateUI(user)
                     Toast.makeText(baseContext, "Bien.",
                         Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MapsActivity::class.java).apply {
+
+                    if (intent.getStringExtra(EXTRA_MESSAGE)=="Profesional") {
+                        intent = Intent(this, ProfesionalActivity::class.java).apply {
+                            /*
+                             *Con finish() impedimos que retorne al anterior activity donde tenemos
+                             *la autenticicación y no queremos que de recuperado esos datos,
+                             *obligando a que se logue de nuevo
+                             */
+                            finish()
+                        }
+                        Log.i("Usuario", "Conectado como Profesional")
+                    }else if(intent.getStringExtra(EXTRA_MESSAGE)=="Cliente"){
+                        intent = Intent(this, ClienteActivity::class.java).apply {
+                            /*
+                             *Con finish() impedimos que retorne al anterior activity donde tenemos
+                             *la autenticicación y no queremos que de recuperado esos datos,
+                             *obligando a que se logue de nuevo
+                             */
+                            finish()
+                        }
+                        Log.i("Usuario", "Conectado como Cliente")
                     }
                     //Inicio el intent
                     startActivity(intent)

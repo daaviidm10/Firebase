@@ -3,19 +3,14 @@ package com.kiskos.apprepaso2
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -25,7 +20,6 @@ import com.google.firebase.ktx.Firebase
 import com.kiskos.apprepaso2.databinding.ActivityMapsBinding
 import org.json.JSONObject
 import org.json.JSONTokener
-import org.w3c.dom.Text
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val PERMISO_LOCALIZACION: Int=3
