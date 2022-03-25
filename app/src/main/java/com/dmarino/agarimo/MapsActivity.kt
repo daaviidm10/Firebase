@@ -1,4 +1,4 @@
-package com.kiskos.apprepaso2
+
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -33,11 +33,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        database = Firebase.database("https://apprepaso-c63ee-default-rtdb.europe-west1.firebasedatabase.app/").reference
+        database = Firebase.database("https://proyectofirebase-c922f-default-rtdb.firebaseio.com/").reference
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+                .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         // Texto para mostrar
@@ -82,14 +82,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         when{
             //Si tengo permisos que me diga que tengo permisos
             ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED->{
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED->{
                 Log.i("Permisos","permiso garantozado")
                 mensajeUsuario("Tienes Permisos")
                 return true
             }
             //Si no los tengo por que los denegue que me salte un mensaje donde me diga que de los permisos en ajustes
             shouldShowRequestPermissionRationale (
-                Manifest.permission.ACCESS_FINE_LOCATION
+                    Manifest.permission.ACCESS_FINE_LOCATION
             )->{
                 mensajeUsuario("Da permisos en ajustes")
                 return false
@@ -104,9 +104,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     //Con esta funcion Compruebo que le di correctamente lso permisos
     @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<out String>,
+            grantResults: IntArray
     ) {
         when(requestCode){
             PERMISO_LOCALIZACION->{ //Conpruebo si mi permiso no esta vacio y fue dado
